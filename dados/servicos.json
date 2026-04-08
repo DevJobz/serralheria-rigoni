@@ -1,0 +1,54 @@
+{
+  "subtitulo": "O que fazemos",
+  "titulo": "Nossos Serviços",
+  "items": [
+    {
+      "titulo": "Portões Automáticos",
+      "descricao": "Portões deslizantes e basculantes com automação completa, motores de alta durabilidade e acabamento impecável. Segurança e praticidade para sua residência ou empresa.",
+      "imagem": "/assets/images/uploads/servico-portoes.jpg",
+      "whatsapp_msg": "Olá! Vim pelo site da Serralheria Rigoni e gostaria de solicitar um orçamento para Portões Automáticos."
+    },
+    {
+      "titulo": "Portas",
+      "descricao": "Portas de ferro, aço e alumínio com design personalizado, para ambientes internos e externos. Robustez, segurança e elegância em cada detalhe.",
+      "imagem": "/assets/images/uploads/servico-portas.jpg",
+      "whatsapp_msg": "Olá! Vim pelo site da Serralheria Rigoni e gostaria de solicitar um orçamento para Portas de Ferro/Aço."
+    },
+    {
+      "titulo": "Escadas",
+      "descricao": "Escadas metálicas retas, em L ou caracol, com design moderno e estrutura sólida. Projetadas para resistência e estética, com acabamentos polidos ou pintados.",
+      "imagem": "/assets/images/uploads/servico-escadas.jpg",
+      "whatsapp_msg": "Olá! Vim pelo site da Serralheria Rigoni e gostaria de solicitar um orçamento para Escadas Metálicas."
+    },
+    {
+      "titulo": "Corrimão",
+      "descricao": "Corrimãos em ferro, aço inox ou alumínio para escadas, rampas e varandas. Unem segurança e beleza, com acabamentos personalizados que valorizam qualquer ambiente.",
+      "imagem": "/assets/images/uploads/servico-corrimao.jpg",
+      "whatsapp_msg": "Olá! Vim pelo site da Serralheria Rigoni e gostaria de solicitar um orçamento para Corrimão."
+    },
+    {
+      "titulo": "Parapeito",
+      "descricao": "Parapeitos e guarda-corpos metálicos para varandas, terraços e mezaninos. Proteção e requinte para sua obra, com modelos gradeados ou em vidro com suporte metálico.",
+      "imagem": "/assets/images/uploads/servico-parapeito.jpg",
+      "whatsapp_msg": "Olá! Vim pelo site da Serralheria Rigoni e gostaria de solicitar um orçamento para Parapeito/Guarda-corpo."
+    },
+    {
+      "titulo": "Estruturas Metálicas",
+      "descricao": "Estruturas metálicas para galpões, coberturas, mezaninos e construções industriais. Projetos customizados com cálculo estrutural, resistência garantida e montagem rápida.",
+      "imagem": "/assets/images/uploads/servico-estruturas.jpg",
+      "whatsapp_msg": "Olá! Vim pelo site da Serralheria Rigoni e gostaria de solicitar um orçamento para Estruturas Metálicas."
+    },
+    {
+      "titulo": "Telhados Metálicos",
+      "descricao": "Coberturas e telhados em telha metálica, estrutura e treliças de aço para residências, comércios e indústrias. Leveza, durabilidade e execução ágil.",
+      "imagem": "/assets/images/uploads/servico-telhados.jpg",
+      "whatsapp_msg": "Olá! Vim pelo site da Serralheria Rigoni e gostaria de solicitar um orçamento para Telhados Metálicos."
+    },
+    {
+      "titulo": "Tudo em Ferragem",
+      "descricao": "Não encontrou o que procura nos itens acima? Trabalhamos com soluções personalizadas em metal e ferragem. Descreva sua necessidade e nossa equipe elaborará a solução ideal para você.",
+      "imagem": "/assets/images/uploads/servico-ferragem.jpg",
+      "whatsapp_msg": "Olá! Vim pelo site da Serralheria Rigoni e não encontrei o que procuro nos serviços listados. Pode me ajudar com um orçamento personalizado?"
+    }
+  ]
+}

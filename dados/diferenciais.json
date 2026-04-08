@@ -1,0 +1,26 @@
+{
+  "subtitulo": "Por que nos escolher",
+  "titulo": "Nossos Diferenciais",
+  "items": [
+    {
+      "icone": "shield",
+      "titulo": "Materiais de Alta Qualidade",
+      "texto": "Trabalhamos com chapas de aço a partir de 1/16\" (1,6mm) de espessura, garantindo portões e estruturas robustos, resistentes à corrosão e com acabamento superior. Cada projeto é executado com o melhor aço carbono e materiais galvanizados do mercado."
+    },
+    {
+      "icone": "credit-card",
+      "titulo": "Pagamento Só Após a Entrega",
+      "texto": "Confiamos no nosso trabalho. Por isso, oferecemos condições diferenciadas de pagamento: você só paga após o serviço concluído e instalado no local. Sem adiantamentos, sem surpresas — sua satisfação é a nossa garantia."
+    },
+    {
+      "icone": "eye-off",
+      "titulo": "Portões Sem Frestas Laterais",
+      "texto": "Nossos portões basculantes são projetados sem frestas laterais, impedindo que pessoas da rua visualizem o interior da sua propriedade. Mais privacidade e segurança para você e sua família."
+    },
+    {
+      "icone": "award",
+      "titulo": "29 Anos de Experiência",
+      "texto": "Desde 1997 em Bauru, transformamos metal em soluções de excelência. Mais de duas décadas aperfeiçoando técnicas, atendendo famílias e empresas com o compromisso de qualidade que só a tradição pode construir."
+    }
+  ]
+}

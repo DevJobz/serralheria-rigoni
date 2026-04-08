@@ -1,0 +1,34 @@
+{
+  "subtitulo": "O que dizem nossos clientes",
+  "titulo": "Depoimentos",
+  "items": [
+    {
+      "nome": "Leonardo Fernandes",
+      "cargo": "Cliente Residencial",
+      "foto": "/assets/images/uploads/depoimento.jpg",
+      "texto": "Compro com a serralheria Rigoni por seu ótimos atendimento nota mil, tudo que preciso deles são nota 1000.",
+      "estrelas": 5
+    },
+    {
+      "nome": "Jéssica Costa",
+      "cargo": "Cliente Residencial",
+      "foto": "/assets/images/uploads/depoimento.jpg",
+      "texto": "Fácil acesso a negociação e também facilita a nossa compra nos ajudando muito.",
+      "estrelas": 5
+    },
+    {
+      "nome": "Cliente Anônimo",
+      "cargo": "Proprietário Comercial",
+      "foto": "/assets/images/uploads/depoimento.jpg",
+      "texto": "Produtos de qualidade, muito bem acabado e são poucos que fazem a calafetação onde corre as soldas.",
+      "estrelas": 5
+    },
+    {
+      "nome": "Cliente Anônimo",
+      "cargo": "Cliente Residencial",
+      "foto": "/assets/images/uploads/depoimento.jpg",
+      "texto": "Segundo portão para duas casas diferentes em menos de 5 anos.",
+      "estrelas": 5
+    }
+  ]
+}

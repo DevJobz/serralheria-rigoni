@@ -1,0 +1,49 @@
+{
+  "titulo": "Nossos Trabalhos",
+  "subtitulo": "Cada projeto é uma obra de arte em metal",
+  "medias": [
+    {
+      "tipo": "imagem",
+      "src": "/assets/images/uploads/galeria-1.jpg",
+      "legenda": "Portão basculante residencial",
+      "destaque": true
+    },
+    {
+      "tipo": "imagem",
+      "src": "/assets/images/uploads/galeria-2.jpg",
+      "legenda": "Escada metálica com corrimão em inox",
+      "destaque": false
+    },
+    {
+      "tipo": "imagem",
+      "src": "/assets/images/uploads/galeria-3.jpg",
+      "legenda": "Estrutura metálica industrial",
+      "destaque": false
+    },
+    {
+      "tipo": "imagem",
+      "src": "/assets/images/uploads/galeria-4.jpg",
+      "legenda": "Porta de entrada comercial",
+      "destaque": false
+    },
+    {
+      "tipo": "imagem",
+      "src": "/assets/images/uploads/galeria-5.jpg",
+      "legenda": "Telhado metálico residencial",
+      "destaque": false
+    },
+    {
+      "tipo": "imagem",
+      "src": "/assets/images/uploads/galeria-6.jpg",
+      "legenda": "Parapeito para varanda",
+      "destaque": false
+    },
+    {
+      "tipo": "video",
+      "src": "/assets/images/uploads/galeria-video-1.mp4",
+      "thumb": "/assets/images/uploads/galeria-video-1-thumb.jpg",
+      "legenda": "Processo de fabricação de portão",
+      "destaque": false
+    }
+  ]
+}

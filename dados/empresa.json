@@ -1,0 +1,16 @@
+{
+  "subtitulo": "Onde nos encontrar",
+  "titulo": "Informações da Empresa",
+  "nome": "Serralheria Rigoni",
+  "endereco": "R. Itororó, Quadra 5 — Vila Independência, Bauru — SP, 17054-230",
+  "horario_semana": "Segunda a Sexta: 08h às 17h",
+  "horario_sabado": "Sábado: Fechado",
+  "horario_domingo": "Domingo: Fechado",
+  "telefone": "(14) 99624-5896",
+  "whatsapp": "5514996245896",
+  "email": "contato@serralheriarigoni.com.br",
+  "instagram": "https://www.instagram.com/serralheria_rigoni/",
+  "facebook": "https://web.facebook.com/serralheriarigoni",
+  "google_maps_embed": "https://maps.google.com/maps?q=Serralheria+Rigoni+R.+Itororo+Quadra+5+Vila+Independencia+Bauru+SP&output=embed",
+  "whatsapp_contato_msg": "Olá! Vim pelo site da Serralheria Rigoni e gostaria de entrar em contato."
+}

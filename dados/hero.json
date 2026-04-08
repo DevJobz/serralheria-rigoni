@@ -1,0 +1,17 @@
+{
+  "titulo_linha1": "Serralheria",
+  "titulo_linha2": "Rigoni",
+  "badge": "Bauru · SP · Desde 1997",
+  "subtitulo": "Tradição · Qualidade · Excelência",
+  "imagem_fundo": "/assets/images/uploads/hero-fachada.jpg",
+  "cta_principal_label": "Ver Nossos Serviços",
+  "cta_principal_href": "#servicos",
+  "cta_secundario_label": "Falar no WhatsApp",
+  "cta_secundario_whatsapp": "Olá! Vim pelo site da Serralheria Rigoni e gostaria de mais informações.",
+  "stat_anos": "29",
+  "stat_anos_label": "Anos de Tradição",
+  "stat_projetos": "500+",
+  "stat_projetos_label": "Projetos Entregues",
+  "stat_cidade": "Bauru",
+  "stat_cidade_label": "Cidade"
+}

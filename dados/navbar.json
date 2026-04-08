@@ -1,0 +1,16 @@
+{
+  "logo_url": "/assets/images/uploads/logo-rigoni.png",
+  "logo_alt": "Serralheria Rigoni",
+  "nome": "Serralheria Rigoni",
+  "slogan": "Desde 1997 · Bauru · SP",
+  "links": [
+    { "label": "Início", "href": "#hero" },
+    { "label": "Nossa História", "href": "#historia" },
+    { "label": "Diferenciais", "href": "#diferenciais" },
+    { "label": "Serviços", "href": "#servicos" },
+    { "label": "Portfólio", "href": "#portfolio" },
+    { "label": "Contato", "href": "#contato" }
+  ],
+  "cta_label": "Solicitar Orçamento",
+  "cta_whatsapp": "Olá! Vim pelo site e gostaria de solicitar um orçamento."
+}

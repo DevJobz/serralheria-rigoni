@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Admin — Serralheria Rigoni</title>
+  <meta name="robots" content="noindex, nofollow">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <script>
+  /* ── Preview CSS ────────────────────────────── */
+  CMS.registerPreviewStyle("/assets/css/style.css");
+
+  /* ── Preview: HERO ──────────────────────────── */
+  var HeroPreview = createClass({
+    render: function() {
+      var entry = this.props.entry;
+      var titulo1  = entry.getIn(['data','titulo_linha1']) || 'Serralheria';
+      var titulo2  = entry.getIn(['data','titulo_linha2']) || 'Rigoni';
+      var badge    = entry.getIn(['data','badge'])    || '';
+      var sub      = entry.getIn(['data','subtitulo']) || '';
+      var imgRaw   = entry.getIn(['data','imagem_fundo']);
+      var img      = imgRaw ? this.props.getAsset(imgRaw).toString() : '';
+      var stat1n   = entry.getIn(['data','stat_anos'])    || '29';
+      var stat1l   = entry.getIn(['data','stat_anos_label'])    || 'Anos de Tradição';
+      var stat2n   = entry.getIn(['data','stat_projetos']) || '500+';
+      var stat2l   = entry.getIn(['data','stat_projetos_label']) || 'Projetos';
+      var stat3n   = entry.getIn(['data','stat_cidade'])   || 'Bauru';
+      var stat3l   = entry.getIn(['data','stat_cidade_label'])   || 'Cidade';
+      return h('div', {
+        style: {
+          position:'relative', minHeight:'400px', background: img ? `url(${img}) center/cover` : '#0D0505',
+          display:'flex', alignItems:'center', justifyContent:'center',
+          flexDirection:'column', textAlign:'center', padding:'40px 20px'
+        }
+      },
+        h('div', {style:{position:'absolute',inset:0,background:'rgba(10,2,2,0.75)',zIndex:0}}),
+        h('div', {style:{position:'relative',zIndex:1}},
+          h('span', {style:{display:'inline-block',fontFamily:'monospace',fontSize:'0.7rem',color:'#3EC9DC',border:'1px solid rgba(62,201,220,0.4)',padding:'6px 16px',marginBottom:'16px',letterSpacing:'0.3em'}}, badge),
+          h('h1', {style:{fontFamily:'sans-serif',fontWeight:'900',fontSize:'clamp(3rem,8vw,6rem)',color:'#fff',lineHeight:0.9,marginBottom:'8px'}},
+            titulo1, h('br',{}), h('em',{style:{fontStyle:'normal',color:'#A83030'}}, titulo2)
+          ),
+          h('p', {style:{fontFamily:'sans-serif',color:'#C0B8B8',letterSpacing:'0.3em',textTransform:'uppercase',margin:'20px 0'}}, sub)
+        ),
+        h('div', {style:{position:'absolute',bottom:0,left:0,right:0,display:'flex',justifyContent:'center',background:'rgba(10,2,2,0.7)',zIndex:1}},
+          h('div', {style:{display:'flex'}},
+            h('div',{style:{padding:'14px 32px',textAlign:'center',borderRight:'1px solid rgba(255,255,255,0.1)'}},
+              h('div',{style:{fontFamily:'sans-serif',fontWeight:'900',fontSize:'1.8rem',color:'#fff'}}, stat1n, h('em',{style:{fontStyle:'normal',color:'#A83030'}},'+')),
+              h('div',{style:{fontFamily:'sans-serif',fontSize:'0.55rem',color:'#C0B8B8',letterSpacing:'0.18em',textTransform:'uppercase'}}, stat1l)
+            ),
+            h('div',{style:{padding:'14px 32px',textAlign:'center',borderRight:'1px solid rgba(255,255,255,0.1)'}},
+              h('div',{style:{fontFamily:'sans-serif',fontWeight:'900',fontSize:'1.8rem',color:'#fff'}}, stat2n),
+              h('div',{style:{fontFamily:'sans-serif',fontSize:'0.55rem',color:'#C0B8B8',letterSpacing:'0.18em',textTransform:'uppercase'}}, stat2l)
+            ),
+            h('div',{style:{padding:'14px 32px',textAlign:'center'}},
+              h('div',{style:{fontFamily:'sans-serif',fontWeight:'900',fontSize:'1.8rem',color:'#fff'}}, stat3n),
+              h('div',{style:{fontFamily:'sans-serif',fontSize:'0.55rem',color:'#C0B8B8',letterSpacing:'0.18em',textTransform:'uppercase'}}, stat3l)
+            )
+          )
+        )
+      );
+    }
+  });
+  CMS.registerPreviewTemplate("hero", HeroPreview);
+
+  /* ── Preview: HISTÓRIA ──────────────────────── */
+  var HistoriaPreview = createClass({
+    render: function() {
+      var entry  = this.props.entry;
+      var titulo = entry.getIn(['data','titulo'])  || 'Nossa História';
+      var badge  = entry.getIn(['data','subtitulo']) || 'Nossa Origem';
+      var texto  = entry.getIn(['data','texto'])   || '';
+      var anos   = entry.getIn(['data','anos_experiencia']) || '29';
+      var imgRaw = entry.getIn(['data','imagem']);
+      var img    = imgRaw ? this.props.getAsset(imgRaw).toString() : 'https://picsum.photos/seed/craftsmen/400/300';
+      return h('div', {style:{background:'#160808',padding:'60px 40px',display:'flex',gap:'48px',alignItems:'center',flexWrap:'wrap'}},
+        h('div',{style:{flex:'1',minWidth:'280px'}},
+          h('span',{style:{fontFamily:'sans-serif',fontSize:'0.7rem',color:'#3EC9DC',letterSpacing:'0.28em',textTransform:'uppercase',border:'1px solid rgba(62,201,220,0.35)',padding:'7px 16px',display:'inline-block',marginBottom:'16px'}}, badge),
+          h('h2',{style:{fontFamily:'sans-serif',fontWeight:'900',fontSize:'2.5rem',color:'#fff',marginBottom:'24px'}}, titulo),
+          h('div',{style:{color:'#C0B8B8',lineHeight:'1.8',fontSize:'1rem'}},
+            texto.split('\n\n').filter(Boolean).map((p,i) => h('p',{key:i,style:{marginBottom:'16px'}},p))
+          )
+        ),
+        h('div',{style:{position:'relative',flex:'1',minWidth:'280px'}},
+          h('img',{src:img,alt:titulo,style:{width:'100%',height:'360px',objectFit:'cover'}}),
+          h('div',{style:{position:'absolute',bottom:'20px',right:'-10px',background:'#7B1A1A',padding:'20px 24px',textAlign:'center'}},
+            h('span',{style:{fontFamily:'sans-serif',fontWeight:'900',fontSize:'3rem',color:'#fff',display:'block',lineHeight:1}}, anos),
+            h('span',{style:{fontFamily:'sans-serif',fontSize:'0.6rem',color:'#C0B8B8',letterSpacing:'0.16em',textTransform:'uppercase'}}, 'Anos de Experiência')
+          )
+        )
+      );
+    }
+  });
+  CMS.registerPreviewTemplate("historia", HistoriaPreview);
+
+  /* ── Preview: SERVIÇOS ──────────────────────── */
+  var ServicosPreview = createClass({
+    render: function() {
+      var entry  = this.props.entry;
+      var titulo = entry.getIn(['data','titulo'])    || 'Nossos Serviços';
+      var badge  = entry.getIn(['data','subtitulo']) || 'O que fazemos';
+      var items  = entry.getIn(['data','items'])     || [];
+      return h('div',{style:{background:'#160808',padding:'60px 40px'}},
+        h('div',{style:{marginBottom:'40px'}},
+          h('span',{style:{fontFamily:'sans-serif',fontSize:'0.7rem',color:'#3EC9DC',letterSpacing:'0.28em',textTransform:'uppercase',border:'1px solid rgba(62,201,220,0.35)',padding:'7px 16px',display:'inline-block',marginBottom:'14px'}}, badge),
+          h('h2',{style:{fontFamily:'sans-serif',fontWeight:'900',fontSize:'2.5rem',color:'#fff'}}, titulo)
+        ),
+        h('div',{style:{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(220px,1fr))',gap:'20px'}},
+          items.map(function(item,i) {
+            var imgRaw = item.get ? item.get('imagem') : item.imagem;
+            return h('div',{key:i,style:{background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.1)',overflow:'hidden'}},
+              h('div',{style:{height:'160px',background:'#4D0F0F',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'2rem'}}, '🔩'),
+              h('div',{style:{padding:'18px'}},
+                h('h3',{style:{fontFamily:'sans-serif',fontWeight:'900',fontSize:'1.2rem',color:'#fff',marginBottom:'8px'}}, item.get?item.get('titulo'):item.titulo),
+                h('p',{style:{fontSize:'0.82rem',color:'#C0B8B8',lineHeight:'1.7'}}, item.get?item.get('descricao'):item.descricao),
+                h('div',{style:{marginTop:'14px',background:'#25D366',color:'#fff',padding:'10px',textAlign:'center',fontFamily:'sans-serif',fontWeight:'700',fontSize:'0.8rem',letterSpacing:'0.08em',textTransform:'uppercase'}}, '💬 Saber Mais')
+              )
+            );
+          })
+        )
+      );
+    }
+  });
+  CMS.registerPreviewTemplate("servicos", ServicosPreview);
+
+  /* ── Preview: DEPOIMENTOS ───────────────────── */
+  var DepoimentosPreview = createClass({
+    render: function() {
+      var entry  = this.props.entry;
+      var titulo = entry.getIn(['data','titulo'])    || 'Depoimentos';
+      var badge  = entry.getIn(['data','subtitulo']) || 'O que dizem nossos clientes';
+      var items  = entry.getIn(['data','items'])     || [];
+      var first  = items.size > 0 ? items.get(0) : null;
+      return h('div',{style:{background:'#160808',padding:'60px 40px',textAlign:'center'}},
+        h('span',{style:{fontFamily:'sans-serif',fontSize:'0.7rem',color:'#3EC9DC',letterSpacing:'0.28em',textTransform:'uppercase',border:'1px solid rgba(62,201,220,0.35)',padding:'7px 16px',display:'inline-block',marginBottom:'14px'}}, badge),
+        h('h2',{style:{fontFamily:'sans-serif',fontWeight:'900',fontSize:'2.5rem',color:'#fff',marginBottom:'40px'}}, titulo),
+        first ? h('div',{style:{background:'rgba(255,255,255,0.04)',borderTop:'3px solid #7B1A1A',maxWidth:'700px',margin:'0 auto',padding:'40px',textAlign:'left'}},
+          h('div',{style:{color:'#F5C842',fontSize:'1rem',letterSpacing:'4px',marginBottom:'16px'}}, '★★★★★'),
+          h('blockquote',{style:{color:'#F0EAEA',fontStyle:'italic',lineHeight:'1.8',marginBottom:'24px',fontSize:'1.05rem'}}, '"', first.get('texto'), '"'),
+          h('div',{style:{display:'flex',alignItems:'center',gap:'12px'}},
+            h('div',{style:{width:'48px',height:'48px',borderRadius:'50%',background:'#7B1A1A',display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontWeight:'900'}}, '👤'),
+            h('div',{},
+              h('div',{style:{fontFamily:'sans-serif',fontWeight:'700',color:'#fff'}}, first.get('nome')),
+              h('div',{style:{fontSize:'0.8rem',color:'#C0B8B8'}}, first.get('cargo'))
+            )
+          )
+        ) : h('p',{style:{color:'#C0B8B8'}}, 'Adicione o primeiro depoimento.')
+      );
+    }
+  });
+  CMS.registerPreviewTemplate("depoimentos", DepoimentosPreview);
+
+  /* ── Preview: EMPRESA ───────────────────────── */
+  var EmpresaPreview = createClass({
+    render: function() {
+      var entry = this.props.entry;
+      var campos = ['nome','endereco','telefone','horario_semana','horario_sabado','email','instagram','facebook'];
+      return h('div',{style:{background:'#4D0F0F',padding:'60px 40px'}},
+        h('h2',{style:{fontFamily:'sans-serif',fontWeight:'900',fontSize:'2rem',color:'#fff',marginBottom:'32px'}}, 'Informações da Empresa'),
+        h('div',{style:{display:'flex',flexDirection:'column',gap:'16px'}},
+          campos.map(function(c,i) {
+            var v = entry.getIn(['data',c]);
+            return v ? h('div',{key:i,style:{display:'flex',gap:'12px',alignItems:'flex-start'}},
+              h('span',{style:{color:'#3EC9DC',fontFamily:'sans-serif',fontSize:'0.75rem',fontWeight:'700',letterSpacing:'0.12em',textTransform:'uppercase',minWidth:'100px',paddingTop:'2px'}}, c+':'),
+              h('span',{style:{color:'#F0EAEA',fontSize:'0.95rem'}}, v)
+            ) : null;
+          })
+        )
+      );
+    }
+  });
+  CMS.registerPreviewTemplate("empresa", EmpresaPreview);
+  </script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+# ============================================================
+# SERRALHERIA RIGONI — Decap CMS Config
+# ============================================================
+
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/images/uploads"
+public_folder: "/assets/images/uploads"
+
+locale: "pt"
+
+collections:
+
+  # ── 1. CONFIGURAÇÕES GERAIS ──────────────────────────────
+  - name: "configuracoes"
+    label: "⚙️ Configurações Gerais"
+    files:
+
+      - name: "navbar"
+        label: "Barra de Navegação e Logo"
+        file: "dados/navbar.json"
+        format: json
+        fields:
+          - { label: "Logo (imagem)", name: logo_url, widget: image }
+          - { label: "Logo ALT text", name: logo_alt, widget: string, default: "Serralheria Rigoni" }
+          - { label: "Nome da Empresa", name: nome, widget: string }
+          - { label: "Slogan (abaixo do nome)", name: slogan, widget: string }
+          - label: "Links do Menu"
+            name: links
+            widget: list
+            fields:
+              - { label: "Rótulo", name: label, widget: string }
+              - { label: "Link (âncora)", name: href, widget: string }
+          - { label: "Botão CTA - Rótulo", name: cta_label, widget: string, default: "Solicitar Orçamento" }
+          - { label: "Botão CTA - Mensagem WhatsApp", name: cta_whatsapp, widget: string }
+
+      - name: "configuracoes_visuais"
+        label: "SEO e Configurações Visuais"
+        file: "dados/configuracoes.json"
+        format: json
+        fields:
+          - { label: "Título SEO (aba do navegador)", name: seo_titulo, widget: string }
+          - { label: "Descrição SEO (Google)", name: seo_descricao, widget: text }
+          - { label: "Palavras-chave SEO", name: seo_keywords, widget: string }
+          - { label: "Imagem OG (compartilhamento social)", name: seo_og_image, widget: image }
+          - { label: "Cor Primária (vinho)", name: cor_primaria, widget: color, enableAlpha: false }
+          - { label: "Cor Primária Escura", name: cor_primaria_escura, widget: color, enableAlpha: false }
+          - { label: "Cor Primária Clara", name: cor_primaria_clara, widget: color, enableAlpha: false }
+          - { label: "Cor Destaque (azul aço)", name: cor_destaque, widget: color, enableAlpha: false }
+          - { label: "Cor Ciano (detalhes)", name: cor_ciano, widget: color, enableAlpha: false }
+
+  # ── 2. SEÇÕES DA PÁGINA ──────────────────────────────────
+  - name: "secoes"
+    label: "📄 Seções da Página"
+    files:
+
+      - name: "hero"
+        label: "Hero — Banner Principal"
+        file: "dados/hero.json"
+        format: json
+        fields:
+          - { label: "Foto da Fachada (imagem de fundo)", name: imagem_fundo, widget: image }
+          - { label: "Badge (ex: Bauru · SP · Desde 1997)", name: badge, widget: string }
+          - { label: "Título — Linha 1", name: titulo_linha1, widget: string, default: "Serralheria" }
+          - { label: "Título — Linha 2 (destaque)", name: titulo_linha2, widget: string, default: "Rigoni" }
+          - { label: "Subtítulo", name: subtitulo, widget: string }
+          - { label: "Botão Principal — Rótulo", name: cta_principal_label, widget: string }
+          - { label: "Botão Principal — Link", name: cta_principal_href, widget: string, default: "#servicos" }
+          - { label: "Botão WhatsApp — Rótulo", name: cta_secundario_label, widget: string }
+          - { label: "Botão WhatsApp — Mensagem", name: cta_secundario_whatsapp, widget: string }
+          - { label: "Estatística 1 — Número", name: stat_anos, widget: string, default: "29" }
+          - { label: "Estatística 1 — Rótulo", name: stat_anos_label, widget: string }
+          - { label: "Estatística 2 — Número", name: stat_projetos, widget: string, default: "500+" }
+          - { label: "Estatística 2 — Rótulo", name: stat_projetos_label, widget: string }
+          - { label: "Estatística 3 — Texto", name: stat_cidade, widget: string, default: "Bauru" }
+          - { label: "Estatística 3 — Rótulo", name: stat_cidade_label, widget: string }
+
+      - name: "historia"
+        label: "Nossa História"
+        file: "dados/historia.json"
+        format: json
+        fields:
+          - { label: "Badge (eyebrow)", name: subtitulo, widget: string, default: "Nossa Origem" }
+          - { label: "Título da Seção", name: titulo, widget: string }
+          - { label: "Texto (separe parágrafos com linha em branco)", name: texto, widget: text }
+          - { label: "Foto dos Irmãos / Serralheria", name: imagem, widget: image }
+          - { label: "Texto alternativo da imagem", name: imagem_alt, widget: string }
+          - { label: "Anos de Experiência (número)", name: anos_experiencia, widget: string, default: "29" }
+          - { label: "Assinatura (ex: Família Rigoni — Bauru, SP)", name: assinatura, widget: string }
+
+      - name: "diferenciais"
+        label: "Nossos Diferenciais"
+        file: "dados/diferenciais.json"
+        format: json
+        fields:
+          - { label: "Badge", name: subtitulo, widget: string, default: "Por que nos escolher" }
+          - { label: "Título", name: titulo, widget: string, default: "Nossos Diferenciais" }
+          - label: "Cards de Diferenciais"
+            name: items
+            widget: list
+            min: 1
+            max: 6
+            fields:
+              - label: "Ícone"
+                name: icone
+                widget: select
+                options:
+                  - { label: "Escudo (Qualidade)", value: "shield" }
+                  - { label: "Cartão (Pagamento)", value: "credit-card" }
+                  - { label: "Olho riscado (Privacidade)", value: "eye-off" }
+                  - { label: "Troféu (Prêmio)", value: "award" }
+              - { label: "Título do Card", name: titulo, widget: string }
+              - { label: "Texto explicativo", name: texto, widget: text }
+
+      - name: "empresa"
+        label: "Informações da Empresa (Contato)"
+        file: "dados/empresa.json"
+        format: json
+        fields:
+          - { label: "Badge", name: subtitulo, widget: string, default: "Onde nos encontrar" }
+          - { label: "Título", name: titulo, widget: string }
+          - { label: "Nome da Empresa", name: nome, widget: string }
+          - { label: "Endereço completo", name: endereco, widget: string }
+          - { label: "Horário — Semana", name: horario_semana, widget: string }
+          - { label: "Horário — Sábado", name: horario_sabado, widget: string }
+          - { label: "Horário — Domingo", name: horario_domingo, widget: string }
+          - { label: "Telefone (formatado)", name: telefone, widget: string, default: "(14) 99624-5896" }
+          - { label: "WhatsApp (somente números, com DDI)", name: whatsapp, widget: string, default: "5514996245896" }
+          - { label: "E-mail (opcional)", name: email, widget: string, required: false }
+          - { label: "Instagram (URL)", name: instagram, widget: string, required: false }
+          - { label: "Facebook (URL)", name: facebook, widget: string, required: false }
+          - { label: "Google Maps Embed URL", name: google_maps_embed, widget: string }
+          - { label: "Mensagem padrão WhatsApp (contato)", name: whatsapp_contato_msg, widget: string }
+
+  # ── 3. CONTEÚDO DINÂMICO ─────────────────────────────────
+  - name: "conteudo"
+    label: "📦 Conteúdo Dinâmico"
+    files:
+
+      - name: "servicos"
+        label: "Serviços (Cards)"
+        file: "dados/servicos.json"
+        format: json
+        fields:
+          - { label: "Badge", name: subtitulo, widget: string, default: "O que fazemos" }
+          - { label: "Título da Seção", name: titulo, widget: string, default: "Nossos Serviços" }
+          - label: "Lista de Serviços"
+            name: items
+            widget: list
+            summary: "{{fields.titulo}}"
+            fields:
+              - { label: "Nome do Serviço", name: titulo, widget: string }
+              - { label: "Descrição (breve)", name: descricao, widget: text }
+              - { label: "Imagem ilustrativa", name: imagem, widget: image }
+              - { label: "Mensagem WhatsApp (específica deste serviço)", name: whatsapp_msg, widget: string }
+
+      - name: "portfolio"
+        label: "Portfólio (Trabalhos Realizados)"
+        file: "dados/portfolio.json"
+        format: json
+        fields:
+          - { label: "Badge", name: subtitulo, widget: string, default: "Nossos Trabalhos" }
+          - { label: "Título da Seção", name: titulo, widget: string, default: "Portfólio de Projetos" }
+          - label: "Itens do Portfólio"
+            name: items
+            widget: list
+            summary: "{{fields.legenda}}"
+            fields:
+              - label: "Tipo"
+                name: tipo
+                widget: select
+                options:
+                  - { label: "Imagem", value: "imagem" }
+                  - { label: "Vídeo (YouTube embed)", value: "video" }
+              - label: "Arquivo ou URL"
+                name: url
+                widget: file
+                hint: "Para imagens, faça upload. Para vídeos, cole a URL de embed do YouTube (ex: https://www.youtube.com/embed/SEU_ID)"
+              - { label: "Legenda", name: legenda, widget: string }
+
+      - name: "depoimentos"
+        label: "Depoimentos de Clientes"
+        file: "dados/depoimentos.json"
+        format: json
+        fields:
+          - { label: "Badge", name: subtitulo, widget: string, default: "O que dizem nossos clientes" }
+          - { label: "Título", name: titulo, widget: string, default: "Depoimentos" }
+          - label: "Depoimentos"
+            name: items
+            widget: list
+            summary: "{{fields.nome}}"
+            fields:
+              - { label: "Nome do Cliente", name: nome, widget: string }
+              - { label: "Tipo de Cliente (ex: Cliente Residencial)", name: cargo, widget: string }
+              - { label: "Foto do Cliente", name: foto, widget: image }
+              - { label: "Texto do Depoimento", name: texto, widget: text }
+              - label: "Avaliação (estrelas)"
+                name: estrelas
+                widget: select
+                options:
+                  - { label: "★★★★★ (5 estrelas)", value: 5 }
+                  - { label: "★★★★☆ (4 estrelas)", value: 4 }
+                  - { label: "★★★☆☆ (3 estrelas)", value: 3 }

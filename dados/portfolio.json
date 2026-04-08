@@ -1,0 +1,51 @@
+{
+  "subtitulo": "Nossos Trabalhos",
+  "titulo": "Portfólio de Projetos",
+  "items": [
+    {
+      "tipo": "imagem",
+      "url": "/assets/images/uploads/portfolio-01.jpg",
+      "legenda": "Portão Automático Residencial"
+    },
+    {
+      "tipo": "imagem",
+      "url": "/assets/images/uploads/portfolio-02.jpg",
+      "legenda": "Escada Metálica em L"
+    },
+    {
+      "tipo": "imagem",
+      "url": "/assets/images/uploads/portfolio-03.jpg",
+      "legenda": "Estrutura Metálica Comercial"
+    },
+    {
+      "tipo": "imagem",
+      "url": "/assets/images/uploads/portfolio-04.jpg",
+      "legenda": "Corrimão em Ferro Forjado"
+    },
+    {
+      "tipo": "imagem",
+      "url": "/assets/images/uploads/portfolio-05.jpg",
+      "legenda": "Portão Deslizante com Automação"
+    },
+    {
+      "tipo": "imagem",
+      "url": "/assets/images/uploads/portfolio-06.jpg",
+      "legenda": "Guarda-corpo e Parapeito"
+    },
+    {
+      "tipo": "imagem",
+      "url": "/assets/images/uploads/portfolio-07.jpg",
+      "legenda": "Telhado Metálico Residencial"
+    },
+    {
+      "tipo": "imagem",
+      "url": "/assets/images/uploads/portfolio-08.jpg",
+      "legenda": "Porta de Aço Customizada"
+    },
+    {
+      "tipo": "video",
+      "url": "https://www.youtube.com/embed/SEU_VIDEO_ID_AQUI",
+      "legenda": "Instalação de Portão Automático"
+    }
+  ]
+}
