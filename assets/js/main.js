@@ -226,18 +226,37 @@ let _portItems = [];
 function renderPortfolio(d) {
   const el=$('#portfolio'); if(!el||!d) return;
   _portItems=d.items;
+  
   const items=d.items.map((item,i)=>{
-    const isV=item.tipo==='video';
+    // Identifica se é YouTube ou Vídeo Local
+    const isYt = item.tipo === 'video';
+    const isLocal = item.tipo === 'video_local';
+    const isV = isYt || isLocal;
+    
+    let midiaHTML = '';
+    
+    // Se for vídeo local, usamos a tag <video> para gerar a miniatura automática
+    if (isLocal) {
+      // O '#t=0.001' é o truque para forçar a renderização do 1º frame no iOS/Safari
+      midiaHTML = `<video class="port-img" src="${item.url}#t=0.001" preload="metadata" muted playsinline></video>`;
+    } 
+    // Se for imagem ou YouTube, mantemos a tag <img>
+    else {
+      const imgSrc = isYt ? '/assets/images/uploads/portfolio-video-thumb.jpg' : item.url;
+      midiaHTML = `<img class="port-img" src="${imgSrc}" alt="${item.legenda}" loading="lazy" onerror="this.src='https://picsum.photos/seed/rigoni${i}/600/430'">`;
+    }
+
     return `<div class="port-item" data-index="${i}" role="button" tabindex="0" aria-label="${item.legenda}">
-      ${isV?'<span class="port-video-badge">▶ Vídeo</span>':''}
-      <img class="port-img"
-           src="${isV?'/assets/images/uploads/portfolio-video-thumb.jpg':item.url}"
-           alt="${item.legenda}" loading="lazy"
-           onerror="this.src='https://picsum.photos/seed/rigoni${i}/600/430'">
+      ${isV ? '<span class="port-video-badge">▶ Vídeo</span>' : ''}
+      
+      ${midiaHTML}
+      
       <div class="port-overlay">
-        <div class="port-overlay-icon">${isV?SVG.play:SVG.zoom}</div></div>
+        <div class="port-overlay-icon">${isV ? SVG.play : SVG.zoom}</div></div>
       <div class="port-label">${item.legenda}</div>
-    </div>`;}).join('');
+    </div>`;
+  }).join('');
+  
   el.innerHTML=`<div class="container">
     <div class="secao-header anim-fade">
       <span class="secao-badge">${d.subtitulo}</span>
@@ -291,22 +310,40 @@ function initPortfolioCarousel() {
 /* ── LIGHTBOX ───────────────────────────────────────── */
 function initLightbox() {
   const box=$('#lightbox'), img=$('#lb-img'), iframe=$('#lb-iframe'),
+        video=$('#lb-video'), // <-- Adicionamos a variável do vídeo aqui
         cls=$('.lb-close',box), lp=$('.lb-prev',box), ln=$('.lb-next',box),
         cap=$('.lb-caption',box);
   if(!box) return;
   let cur=0;
+  
   function abrir(i) {
     cur=i; const item=_portItems[i]; if(!item) return;
-    if(item.tipo==='video') {
-      img.style.display='none'; iframe.src=item.url+'?autoplay=1'; iframe.classList.add('ativo');
-    } else {
-      iframe.classList.remove('ativo'); iframe.src=''; img.style.display='';
-      img.src=item.url; img.alt=item.legenda;
+    
+    // Reseta/Esconde todos os 3 antes de abrir o correto
+    img.style.display='none'; 
+    iframe.classList.remove('ativo'); iframe.src=''; 
+    video.classList.remove('ativo'); video.pause(); video.src='';
+
+    // Verifica qual é o tipo de mídia e mostra o correto
+    if(item.tipo==='video') { // YouTube
+      iframe.src=item.url+'?autoplay=1'; iframe.classList.add('ativo');
+    } else if (item.tipo==='video_local') { // Arquivo .mp4 (Assets)
+      video.src=item.url; video.classList.add('ativo'); video.play();
+    } else { // Imagem
+      img.style.display=''; img.src=item.url; img.alt=item.legenda;
     }
+    
     if(cap) cap.textContent=item.legenda||'';
     box.classList.add('ativo'); document.body.style.overflow='hidden';
   }
-  function fechar() { box.classList.remove('ativo'); iframe.src=''; iframe.classList.remove('ativo'); document.body.style.overflow=''; }
+  
+  function fechar() { 
+    box.classList.remove('ativo'); 
+    iframe.src=''; iframe.classList.remove('ativo'); 
+    video.pause(); video.src=''; video.classList.remove('ativo'); // Para o vídeo ao fechar
+    document.body.style.overflow=''; 
+  }
+  
   function nav(d)   { cur=(cur+d+_portItems.length)%_portItems.length; abrir(cur); }
   document.addEventListener('click',e=>{ const it=e.target.closest('.port-item'); if(it) abrir(+it.dataset.index); });
   document.addEventListener('keydown',e=>{
@@ -470,7 +507,8 @@ function injectLightboxHTML() {
     <div class="lb-inner">
       <button class="lb-close" aria-label="Fechar">${SVG.cls}</button>
       <img id="lb-img" alt="Imagem ampliada">
-      <iframe id="lb-iframe" allowfullscreen title="Vídeo do portfólio"></iframe>
+      <iframe id="lb-iframe" allowfullscreen title="Vídeo do YouTube"></iframe>
+      <video id="lb-video" controls playsinline title="Vídeo do portfólio"></video>
       <div class="lb-caption"></div>
     </div>
     <button class="lb-nav lb-prev" aria-label="Anterior">${SVG.arL}</button>
