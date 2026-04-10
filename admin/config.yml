@@ -126,8 +126,12 @@ collections:
           - { label: "Horário — Semana", name: horario_semana, widget: string }
           - { label: "Horário — Sábado", name: horario_sabado, widget: string }
           - { label: "Horário — Domingo", name: horario_domingo, widget: string }
-          - { label: "Telefone (formatado)", name: telefone, widget: string, default: "(14) 99624-5896" }
-          - { label: "WhatsApp (somente números, com DDI)", name: whatsapp, widget: string, default: "5514996245896" }
+          - { label: "Nome — Contato 1", name: nome_wagner, widget: string, default: "Wagner Rigoni" }
+          - { label: "Telefone (formatado) — Wagner", name: telefone, widget: string, default: "(14) 99624-5896" }
+          - { label: "WhatsApp Wagner (somente números, com DDI)", name: whatsapp, widget: string, default: "5514996245896" }
+          - { label: "Nome — Contato 2", name: nome_wellington, widget: string, default: "Wellington Rigoni" }
+          - { label: "Telefone (formatado) — Wellington", name: telefone_wellington, widget: string, default: "(14) 99754-3182" }
+          - { label: "WhatsApp Wellington (somente números, com DDI)", name: whatsapp_wellington, widget: string, default: "5514997543182" }
           - { label: "E-mail (opcional)", name: email, widget: string, required: false }
           - { label: "Instagram (URL)", name: instagram, widget: string, required: false }
           - { label: "Facebook (URL)", name: facebook, widget: string, required: false }
@@ -203,3 +207,24 @@ collections:
                   - { label: "★★★★★ (5 estrelas)", value: 5 }
                   - { label: "★★★★☆ (4 estrelas)", value: 4 }
                   - { label: "★★★☆☆ (3 estrelas)", value: 3 }
+
+                  - name: "servicos_extraordinarios"
+        label: "Serviços Extraordinários (Vídeos)"
+        file: "dados/servicos_extraordinarios.json"
+        format: json
+        fields:
+          - { label: "Badge", name: subtitulo, widget: string, default: "Criações Especiais" }
+          - { label: "Título da Seção", name: titulo, widget: string, default: "Serviços Extraordinários" }
+          - label: "Cards de Vídeo"
+            name: items
+            widget: list
+            summary: "{{fields.titulo}}"
+            min: 1
+            max: 6
+            fields:
+              - { label: "Título do Card", name: titulo, widget: string }
+              - { label: "Descrição (opcional)", name: descricao, widget: text, required: false }
+              - label: "Arquivo de vídeo (.mp4)"
+                name: video
+                widget: file
+                hint: "Faça upload do .mp4 — o 1º frame será usado como capa automática"

@@ -39,12 +39,12 @@ const ICONES_DIF = { shield: SVG.shld, 'credit-card': SVG.card, 'eye-off': SVG.e
 async function carregarDados() {
   const urls = ['/dados/navbar.json','/dados/hero.json','/dados/historia.json',
     '/dados/diferenciais.json','/dados/servicos.json','/dados/portfolio.json',
-    '/dados/depoimentos.json','/dados/empresa.json'];
+    '/dados/depoimentos.json','/dados/empresa.json','/dados/servicos_extraordinarios.json'];
   try {
     const rs = await Promise.all(urls.map(u => fetch(u)));
     const ds = await Promise.all(rs.map(r => { if(!r.ok) throw new Error(r.url); return r.json(); }));
     return { navbar:ds[0], hero:ds[1], historia:ds[2], diferenciais:ds[3],
-             servicos:ds[4], portfolio:ds[5], depoimentos:ds[6], empresa:ds[7] };
+             servicos:ds[4], portfolio:ds[5], depoimentos:ds[6], empresa:ds[7], servExt:ds[8] };
   } catch(e) { console.error('[Rigoni]', e); return null; }
 }
 
@@ -218,6 +218,50 @@ function renderServicos(d) {
       <h2 class="secao-titulo">${d.titulo}</h2></div>
     <div class="servicos-grid">${cards}</div>
   </div>`;
+}
+
+/* ── SERVIÇOS EXTRAORDINÁRIOS ───────────────────────── */
+function renderServicosExtraordinarios(d) {
+  const el=$('#servicos-extraordinarios'); if(!el||!d) return;
+  const cards=(d.items||[]).map((item,i)=>`
+    <article class="srv-ext-item anim-fade delay-${i+1}"
+             data-src="${item.video}" data-legenda="${item.titulo}"
+             role="button" tabindex="0" aria-label="Assistir: ${item.titulo}">
+      <div class="srv-ext-video-wrap">
+        <video class="srv-ext-thumb" src="${item.video}#t=0.001"
+               preload="metadata" muted playsinline></video>
+        <div class="srv-ext-overlay">
+          <div class="srv-ext-play">${SVG.play}</div>
+        </div>
+      </div>
+      <div class="srv-ext-body">
+        <h3 class="srv-ext-titulo">${item.titulo}</h3>
+        ${item.descricao?`<p class="srv-ext-desc">${item.descricao}</p>`:''}
+      </div>
+    </article>`).join('');
+  el.innerHTML=`<div class="container">
+    <div class="secao-header anim-fade">
+      <span class="secao-badge">${d.subtitulo||'Criações Especiais'}</span>
+      <h2 class="secao-titulo">${d.titulo||'Serviços Extraordinários'}</h2></div>
+    <div class="srv-ext-grid">${cards}</div>
+  </div>`;
+
+  /* Abre lightbox ao clicar */
+  $$('.srv-ext-item',el).forEach(card=>{
+    const abrir=()=>{
+      const lb=$('#lightbox'), video=$('#lb-video'),
+            img=$('#lb-img'), iframe=$('#lb-iframe'),
+            cap=$('.lb-caption',lb);
+      if(!lb) return;
+      img.style.display='none';
+      iframe.classList.remove('ativo'); iframe.src='';
+      video.src=card.dataset.src; video.classList.add('ativo'); video.play();
+      if(cap) cap.textContent=card.dataset.legenda||'';
+      lb.classList.add('ativo'); document.body.style.overflow='hidden';
+    };
+    card.addEventListener('click', abrir);
+    card.addEventListener('keydown', e=>{ if(e.key==='Enter') abrir(); });
+  });
 }
 
 /* ── PORTFÓLIO ──────────────────────────────────────── */
@@ -436,7 +480,10 @@ function renderEmpresa(d) {
         <div class="contato-item">
           <div class="contato-icone">${SVG.phn}</div>
           <div><div class="contato-item-titulo">Telefone / WhatsApp</div>
-          <div class="contato-item-valor"><a href="tel:+${d.whatsapp}">${d.telefone}</a></div></div></div>
+          <div class="contato-item-valor">
+            <a href="tel:+${d.whatsapp||'5514996245896'}">${d.nome_wagner||'Wagner Rigoni'} — ${d.telefone||'(14) 99624-5896'}</a><br>
+            <a href="tel:+${d.whatsapp_wellington||'5514997543182'}">${d.nome_wellington||'Wellington Rigoni'} — ${d.telefone_wellington||'(14) 99754-3182'}</a>
+          </div></div></div>
         ${d.email?`<div class="contato-item">
           <div class="contato-icone">${SVG.mail}</div>
           <div><div class="contato-item-titulo">E-mail</div>
@@ -476,9 +523,11 @@ function renderFooter(navbar, empresa) {
         </ul>
       </div>
       <div>
+        <div>
         <div class="footer-col-titulo">Contato</div>
         <ul class="footer-links">
-          <li><a class="footer-link" href="tel:+${e.whatsapp||'5514996245896'}">${e.telefone||'(14) 99624-5896'}</a></li>
+          <li><a class="footer-link" href="tel:+${e.whatsapp||'5514996245896'}">${e.nome_wagner||'Wagner Rigoni'} — ${e.telefone||'(14) 99624-5896'}</a></li>
+          <li><a class="footer-link" href="tel:+${e.whatsapp_wellington||'5514997543182'}">${e.nome_wellington||'Wellington Rigoni'} — ${e.telefone_wellington||'(14) 99754-3182'}</a></li>
           ${e.email?`<li><a class="footer-link" href="mailto:${e.email}">${e.email}</a></li>`:''}
           ${e.instagram?`<li><a class="footer-link" href="${e.instagram}" target="_blank" rel="noopener">Instagram</a></li>`:''}
           ${e.facebook?`<li><a class="footer-link" href="${e.facebook}" target="_blank" rel="noopener">Facebook</a></li>`:''}
@@ -526,6 +575,7 @@ async function init() {
   renderHistoria(dados.historia);
   renderDiferenciais(dados.diferenciais);
   renderServicos(dados.servicos);
+  renderServicosExtraordinarios(dados.servExt);
   renderPortfolio(dados.portfolio);
   renderDepoimentos(dados.depoimentos);
   renderEmpresa(dados.empresa);

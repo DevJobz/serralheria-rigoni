@@ -627,3 +627,63 @@ footer { background: var(--preto-metal); border-top: 1px solid rgba(123,26,26,0.
   .hero-stat   { padding: 10px 24px; }
   .hero-content {padding: clamp(90px, 12vh, 120px) var(--gap-pad) 24px;}
 }
+
+/* ========================
+   SERVIÇOS EXTRAORDINÁRIOS
+   ======================== */
+.srv-ext-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 3vw, 32px);
+  margin-top: 48px;
+}
+@media (max-width: 900px) { .srv-ext-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .srv-ext-grid { grid-template-columns: 1fr; } }
+
+.srv-ext-item {
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.08);
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--transicao);
+}
+.srv-ext-item:hover { border-color: var(--vinho-claro); transform: translateY(-4px); box-shadow: var(--sombra-media); }
+
+.srv-ext-video-wrap {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: var(--vinho-escuro);
+}
+.srv-ext-thumb {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+.srv-ext-overlay {
+  position: absolute; inset: 0;
+  background: rgba(10,2,2,0.45);
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transicao);
+}
+.srv-ext-item:hover .srv-ext-overlay { background: rgba(123,26,26,0.55); }
+
+.srv-ext-play {
+  width: 56px; height: 56px;
+  background: var(--vinho);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--branco);
+  transition: var(--transicao);
+}
+.srv-ext-play svg { width: 22px; height: 22px; margin-left: 3px; }
+.srv-ext-item:hover .srv-ext-play { transform: scale(1.12); background: var(--vinho-claro); }
+
+.srv-ext-body { padding: 20px 22px 24px; }
+.srv-ext-titulo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.45rem; letter-spacing: 0.06em;
+  color: var(--branco); margin-bottom: 8px;
+}
+.srv-ext-desc { font-size: 0.88rem; color: var(--cinza-metal); line-height: 1.7; }

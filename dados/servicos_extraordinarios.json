@@ -1,0 +1,21 @@
+{
+  "subtitulo": "Criações Especiais",
+  "titulo": "Serviços Extraordinários",
+  "items": [
+    {
+      "titulo": "Pergolado",
+      "descricao": "",
+      "video": "/assets/images/uploads/video1.mp4"
+    },
+    {
+      "titulo": "Deck Automatizado",
+      "descricao": "",
+      "video": "/assets/images/uploads/video2.mp4"
+    },
+    {
+      "titulo": "Grandes Estruturas",
+      "descricao": "",
+      "video": "/assets/images/uploads/video3.mp4"
+    }
+  ]
+}
